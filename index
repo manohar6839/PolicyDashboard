@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rajasthan Solar Policy Dashboard 2025</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6; /* Light gray background */
+        }
+        .tab-button {
+            transition: all 0.3s ease;
+        }
+        .tab-button.active {
+            border-color: #3b82f6; /* Blue-500 */
+            color: #3b82f6;
+            background-color: #eff6ff; /* Blue-50 */
+        }
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .card {
+            background-color: white;
+            border-radius: 0.5rem; /* 8px */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            padding: 1.5rem; /* 24px */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .card-title {
+            font-size: 1.125rem; /* 18px */
+            font-weight: 600;
+            color: #1e40af; /* Blue-800 */
+            margin-bottom: 0.75rem; /* 12px */
+        }
+        .card-content p {
+            color: #4b5563; /* Gray-600 */
+            font-size: 0.9rem;
+        }
+        .card-content ul {
+            list-style-type: disc;
+            margin-left: 1.25rem; /* 20px */
+            color: #4b5563; /* Gray-600 */
+            font-size: 0.9rem;
+        }
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+        .badge-green {
+            background-color: #d1fae5; /* Green-100 */
+            color: #065f46; /* Green-800 */
+        }
+        .badge-blue {
+            background-color: #dbeafe; /* Blue-100 */
+            color: #1e40af; /* Blue-800 */
+        }
+        .badge-yellow {
+            background-color: #fef3c7; /* Yellow-100 */
+            color: #92400e; /* Yellow-800 */
+        }
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        /* Custom scrollbar for better aesthetics */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+    <div class="max-w-7xl mx-auto">
+        <header class="mb-8 text-center">
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-800">Rajasthan Solar Policy Dashboard 2025</h1>
+            <p class="text-gray-600 mt-2">Insights into RERC Regulations & Comparative Analysis</p>
+        </header>
+
+        <div class="mb-6 border-b border-gray-300">
+            <nav class="flex flex-wrap -mb-px" aria-label="Tabs">
+                <button class="tab-button active text-gray-600 hover:text-blue-600 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm md:text-base mr-2 md:mr-4" data-tab="overview">
+                    Overview & Tariff Regs
+                </button>
+                <button class="tab-button text-gray-600 hover:text-blue-600 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm md:text-base mr-2 md:mr-4" data-tab="geo">
+                    Green Energy Open Access
+                </button>
+                <button class="tab-button text-gray-600 hover:text-blue-600 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm md:text-base mr-2 md:mr-4" data-tab="rooftop">
+                    Rooftop Solar Boost
+                </button>
+                <button class="tab-button text-gray-600 hover:text-blue-600 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm md:text-base mr-2 md:mr-4" data-tab="comparison">
+                    State Comparison
+                </button>
+                <button class="tab-button text-gray-600 hover:text-blue-600 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm md:text-base" data-tab="outlook">
+                    Impact & Outlook
+                </button>
+            </nav>
+        </div>
+
+        <div>
+            <div id="overview" class="tab-content active">
+                <h2 class="text-2xl font-semibold text-gray-700 mb-6">Overview & Tariff Regulations 2025</h2>
+                <p class="text-gray-600 mb-6">
+                    RERC's 2025 regulations aim to enhance solar adoption in Rajasthan. The "Terms and Conditions for Determination of Tariff" Regulations, 2025 (effective Apr 1, 2025 - Mar 31, 2030) are central to this, providing a framework for power pricing, including for solar projects.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="card">
+                        <h3 class="card-title">Promotion of Distributed Solar</h3>
+                        <div class="card-content">
+                            <p>Regulations acknowledge the need to promote distributed solar power, fostering decentralized generation.</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3 class="card-title">Green Energy Incentives</h3>
+                        <div class="card-content">
+                            <p>General incentives for green energy adoption are outlined, which will benefit solar project development.</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3 class="card-title">Revised PLF Formula</h3>
+                        <div class="card-content">
+                            <p>RERC indicated revisions to the Plant Load Factor (PLF) formula, potentially impacting solar project viability assessments.</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3 class="card-title">Multi-Year Tariff (MYT) Principles</h3>
+                        <div class="card-content">
+                            <p>Adherence to MYT principles aims to provide long-term financial visibility and stability for solar developers.</p>
+                        </div>
+                    </div>
+                     <div class="card">
+                        <h3 class="card-title">Focus on Transparency</h3>
+                        <div class="card-content">
+                            <p>Emphasis on transparency in tariff determination and public participation in the tariff-setting process.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="geo" class="tab-content">
+                <h2 class="text-2xl font-semibold text-gray-700 mb-6">Green Energy Open Access (GEOA) Regulations 2025</h2>
+                <p class="text-gray-600 mb-6">
+                    Issued in May 2025, these regulations significantly ease the process for consumers to access green energy, including solar.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="card">
+                        <h3 class="card-title">Eligibility Criteria</h3>
+                        <div class="card-content">
+                            <p><span class="badge badge-green">100 kW+ Load:</span> Consumers with a contract demand or sanctioned load of 100 kW or more are eligible.</p>
+                            <p class="mt-2"><span class="badge badge-green">No Lower Limit for Captive:</span> No minimum load for captive consumers.</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3 class="card-title">Energy Storage Mandate</h3>
+                        <div class="card-content">
+                            <p><span class="badge badge-blue">>5 MW Projects:</span> New RE projects (incl. solar) > 5 MW must have energy storage systems.</p>
+                            <p class="mt-2"><span class="badge badge-blue">Captive >100% Demand:</span> Captive plants exceeding 100% of contract demand need BESS for a portion of excess capacity.</p>
+                            <p class="mt-1 text-xs text-gray-500">Aims to enhance grid reliability.</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3 class="card-title">Banking Facility</h3>
+                        <div class="card-content">
+                            <p><span class="badge badge-yellow">For Captive Users:</span> Permitted up to 25% of injected energy or 30% of DISCOM-supplied consumption (whichever is higher).</p>
+                            <p class="mt-2"><span class="badge badge-yellow">8% In-Kind Fee:</span> Subject to an 8% in-kind banking charge.</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3 class="card-title">Streamlined Process & Charges</h3>
+                        <div class="card-content">
+                            <p>Simplified application via a central portal.</p>
+                            <p class="mt-2">Defined charges: transmission, wheeling.</p>
+                            <p class="mt-2"><span class="badge badge-green">CSS Capped:</span> Cross-Subsidy Surcharge (CSS) is capped and waived for captive solar plants.</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3 class="card-title">Scope of Green Energy</h3>
+                        <div class="card-content">
+                            <p>Broadened to include wind, solar, hydro, hybrid sources, and energy storage systems using only renewable energy.</p>
+                        </div>
+                    </div>
+                     <div class="card">
+                        <h3 class="card-title">Priority Allocation</h3>
+                        <div class="card-content">
+                            <p>Preference given to GEOA consumers over traditional open-access consumers, supporting national RE goals.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="rooftop" class="tab-content">
+                <h2 class="text-2xl font-semibold text-gray-700 mb-6">Rooftop Solar Boost (PM Surya Ghar Yojana)</h2>
+                <p class="text-gray-600 mb-6">
+                    In March 2025, RERC approved key relaxations under DREGS Regulations, 2021, to support the PM Surya Ghar Muft Bijli Yojana.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="card">
+                        <h3 class="card-title">Waiver of Application Fee</h3>
+                        <div class="card-content">
+                            <p>Application fees for domestic rooftop solar installations are waived, reducing upfront costs for consumers.</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3 class="card-title">Waiver of Security Deposit</h3>
+                        <div class="card-content">
+                            <p>Security deposits required for domestic rooftop solar are waived, further easing financial burden.</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3 class="card-title">No Connection Agreement</h3>
+                        <div class="card-content">
+                            <p>The requirement for a formal connection agreement for domestic rooftop solar installations is removed to expedite the process.</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3 class="card-title">Waiver of Meter Testing Charges</h3>
+                        <div class="card-content">
+                            <p>Meter testing charges for domestic consumers opting for rooftop solar are waived.</p>
+                        </div>
+                    </div>
+                     <div class="card">
+                        <h3 class="card-title">Objective</h3>
+                        <div class="card-content">
+                            <p>To effectively implement the PM Surya Ghar Muft Bijli Yojana and achieve state targets for rooftop solar installations.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="comparison" class="tab-content">
+                <h2 class="text-2xl font-semibold text-gray-700 mb-6">State Policy Comparison</h2>
+                <div class="space-y-8">
+                    <div class="card">
+                        <h3 class="card-title text-xl text-blue-700">Rajasthan vs. Gujarat</h3>
+                        <div class="card-content comparison-grid">
+                            <div>
+                                <h4 class="font-semibold text-gray-700 mb-1">Rooftop Solar Ecosystem:</h4>
+                                <p><strong class="text-red-600">Gujarat:</strong> More mature and extensive, benefiting from early and consistent policy support.</p>
+                                <p><strong class="text-green-600">Rajasthan:</strong> New relaxations aim to catch up and accelerate rooftop adoption.</p>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-700 mb-1">Policy Cycle:</h4>
+                                <p><strong class="text-red-600">Gujarat:</strong> Demonstrated pattern of regular policy updates adapting to market changes.</p>
+                                <p><strong class="text-green-600">Rajasthan:</strong> 2025 regulations mark a significant update; consistent future revisions will be key.</p>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-700 mb-1">Capacity Restrictions:</h4>
+                                <p><strong class="text-red-600">Gujarat:</strong> Often features no capacity restrictions for many project types.</p>
+                                <p><strong class="text-green-600">Rajasthan:</strong> GEOA defines eligibility (e.g., 100kW for open access), rooftop relaxations are for domestic scale.</p>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-700 mb-1">Land Allocation:</h4>
+                                <p><strong class="text-red-600">Gujarat:</strong> Specific models for large solar parks have facilitated rapid development.</p>
+                                <p><strong class="text-green-600">Rajasthan:</strong> Recent land law changes (early 2024) are a new factor impacting project timelines and costs.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3 class="card-title text-xl text-blue-700">Rajasthan vs. Other Leading States (General Trends)</h3>
+                         <div class="card-content comparison-grid">
+                            <div>
+                                <h4 class="font-semibold text-gray-700 mb-1">Rooftop Solar Policies:</h4>
+                                <p><strong class="text-green-600">Rajasthan:</strong> Recent waivers are very positive for domestic consumers. Capacity limits and net/gross metering specifics vary across states.</p>
+                                <p class="mt-1">Many states have adopted net/gross metering, but Rajasthan's fee waivers are a strong incentive.</p>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-700 mb-1">Open Access Charges:</h4>
+                                <p><strong class="text-green-600">Rajasthan:</strong> GEOA regulations with capped and waived CSS for captive solar are competitive. This is a critical factor where states differ significantly.</p>
+                                <p class="mt-1">Makes RE procurement more attractive for C&I consumers.</p>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-700 mb-1">Energy Storage Integration:</h4>
+                                <p><strong class="text-green-600">Rajasthan:</strong> Mandate for energy storage in new GEOA regulations is forward-looking and aligns with national trends for grid stability.</p>
+                                <p class="mt-1">Some other states are also exploring or mandating storage, but Rajasthan's clarity is notable.</p>
+                            </div>
+                             <div>
+                                <h4 class="font-semibold text-gray-700 mb-1">Incentives & Subsidies:</h4>
+                                <p><strong class="text-green-600">Rajasthan:</strong> Relies on central schemes (PM Surya Ghar) augmented by state-level regulatory relaxations and budgetary support.</p>
+                                <p class="mt-1">Direct state capital subsidies or GBIs vary greatly among leading solar states.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="outlook" class="tab-content">
+                <h2 class="text-2xl font-semibold text-gray-700 mb-6">Impact & Outlook</h2>
+                <div class="space-y-6">
+                    <div class="card">
+                        <h3 class="card-title">Potential Impact in Rajasthan</h3>
+                        <div class="card-content">
+                            <ul>
+                                <li><strong class="text-green-600">Accelerated Solar Adoption:</strong> New regulations are poised to significantly boost solar uptake, especially in rooftop and C&I open access segments.</li>
+                                <li><strong class="text-green-600">Improved Investor Confidence:</strong> Clearer tariff frameworks and GEOA rules can enhance investor confidence.</li>
+                                <li><strong class="text-green-600">Enhanced Grid Stability:</strong> Mandating energy storage is a crucial step towards managing intermittent renewable energy.</li>
+                                <li><strong class="text-green-600">Consumer Empowerment:</strong> Easier open access and rooftop solar processes benefit consumers.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3 class="card-title">Rajasthan's Positioning</h3>
+                        <div class="card-content">
+                            <p>With these 2025 regulations, Rajasthan strengthens its position as a leading state in India's solar energy transition. The proactive measures, particularly in Green Energy Open Access and support for rooftop solar, place it among the more progressive states.</p>
+                            <p class="mt-2">Effective and timely implementation of these policies, alongside addressing challenges like land acquisition complexities from recent land law changes, will be crucial for realizing the state's full solar potential and contributing to national renewable energy targets.</p>
+                        </div>
+                    </div>
+                     <div class="card">
+                        <h3 class="card-title">Key Challenges to Monitor</h3>
+                        <div class="card-content">
+                            <ul>
+                                <li><strong class="text-yellow-600">Land Acquisition:</strong> Navigating the impacts of new land laws from early 2024.</li>
+                                <li><strong class="text-yellow-600">Grid Infrastructure:</strong> Ensuring robust grid infrastructure to support increased RE penetration.</li>
+                                <li><strong class="text-yellow-600">DISCOM Financial Health:</strong> Continued financial stability of distribution companies is vital for PPA adherence.</li>
+                                <li><strong class="text-yellow-600">Consistent Implementation:</strong> Ensuring smooth and consistent application of new rules across all levels.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const tabButtons = document.querySelectorAll('.tab-button');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Deactivate all buttons and hide all content
+                tabButtons.forEach(btn => {
+                    btn.classList.remove('active');
+                    btn.style.borderColor = 'transparent'; // Reset border for non-active
+                });
+                tabContents.forEach(content => content.classList.remove('active'));
+
+                // Activate clicked button and show corresponding content
+                button.classList.add('active');
+                button.style.borderColor = '#3b82f6'; // Ensure active border color
+                const targetTab = button.getAttribute('data-tab');
+                document.getElementById(targetTab).classList.add('active');
+            });
+        });
+
+        // Ensure the initially active tab button has its border color set
+        document.addEventListener('DOMContentLoaded', () => {
+            const initiallyActiveButton = document.querySelector('.tab-button.active');
+            if (initiallyActiveButton) {
+                initiallyActiveButton.style.borderColor = '#3b82f6';
+            }
+        });
+    </script>
+</body>
+</html>
